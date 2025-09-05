@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Theme-specific styles */
+[data-theme="dark"] {
+  --scrollbar-thumb: #424242;
+  --scrollbar-track: #2d2d30;
+}
+
+[data-theme="light"] {
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-track: #f1f1f1;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Selection styles */
+::selection {
+  background: #264f78;
+  color: white;
+}
+
+[data-theme="light"] ::selection {
+  background: #add6ff;
+  color: black;
+}
