@@ -24,6 +24,6 @@
       "@ui/*": ["./src/components/ui"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/react-dnd-override.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
