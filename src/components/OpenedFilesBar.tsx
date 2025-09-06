@@ -44,37 +44,39 @@ const OpenedFilesBar: React.FC = () => {
   return (
     <div className="w-full">
       <DragDropContext onDragEnd={handleDragEnd}>
-        {/* @ts-ignore */}
         <Droppable droppableId="tabs" direction="horizontal">
-          {(provided: any, snapshot: any) => (
-            <div
-              className="flex items-center border-b-[1px] overflow-x-auto"
-              style={{
-                borderColor: colors.tabBorder,
-                backgroundColor: colors.tabInactive,
-              }}
-              onContextMenu={handleContextMenu}
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              {openedTabs.map((tab, index) => (
-                // @ts-ignore
-                <Draggable key={tab.id} draggableId={tab.id} index={index}>
-                  {(provided: any, snapshot: any) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      className={`${snapshot.isDragging ? "opacity-50" : ""}`}
-                    >
-                      <OpenedFilesBarTab file={tab} />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
+          {(provided: any) => {
+            return (
+              <div
+                className="flex items-center border-b-[1px] overflow-x-auto"
+                style={{
+                  borderColor: colors.tabBorder,
+                  backgroundColor: colors.tabInactive,
+                }}
+                onContextMenu={handleContextMenu}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {openedTabs.map((tab, index) => (
+                  <Draggable key={tab.id} draggableId={tab.id} index={index}>
+                    {(provided: any, snapshot: any) => {
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={`${snapshot.isDragging ? "opacity-50" : ""}`}
+                        >
+                          <OpenedFilesBarTab file={tab} />
+                        </div>
+                      );
+                    }}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            );
+          }}
         </Droppable>
       </DragDropContext>
     </div>
