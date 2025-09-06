@@ -9,7 +9,6 @@ const StatusBar = () => {
   const colors = useThemeColors();
 
   const activeTab = openedTabs.find((tab) => tab.isActive);
-  const activeFile = activeTab || clickedFile;
 
   const getLanguageFromFilename = (filename: string): string => {
     const extension = filename.split(".").pop()?.toLowerCase();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, Draggable, DroppableProvided, DraggableProvided, DraggableStateSnapshot } from "@hello-pangea/dnd";
 import { RootState } from "../app/store";
 import OpenedFilesBarTab from "./OpenedFilesBarTab";
 import {
@@ -45,7 +45,7 @@ const OpenedFilesBar: React.FC = () => {
     <div className="w-full">
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="tabs" direction="horizontal">
-          {(provided) => (
+          {(provided: DroppableProvided) => (
             <div
               className="flex items-center border-b-[1px] overflow-x-auto"
               style={{
@@ -58,7 +58,7 @@ const OpenedFilesBar: React.FC = () => {
             >
               {openedTabs.map((tab, index) => (
                 <Draggable key={tab.id} draggableId={tab.id} index={index}>
-                  {(provided, snapshot) => (
+                  {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.draggableProps}
@@ -70,7 +70,7 @@ const OpenedFilesBar: React.FC = () => {
                   )}
                 </Draggable>
               ))}
-              {provided.placeholder}
+              {provided.placeholder as React.ReactNode}
             </div>
           )}
         </Droppable>
